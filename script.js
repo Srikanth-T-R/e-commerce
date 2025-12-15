@@ -1,26 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
-    // --- 1. DATA (User Provided) ---
+    // --- 1. DATA (Your .webp Images) ---
     const products = [
-        { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.png', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
-        { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.png', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
-        { id: 3, name: 'Silk Blend Tee', category: 'Apparel', price: 3200, rating: 4.2, image: 'assets/images/tshirt.png', description: 'Luxuriously soft silk-cotton blend.', specs: { 'Fabric': 'Cotton/Silk', 'Fit': 'Regular' } },
-        { id: 4, name: 'UltraWide 4K Monitor', category: 'Electronics', price: 42000, rating: 4.9, image: 'assets/images/monitor.png', description: '34-inch curved display for creators.', specs: { 'Resolution': '3440 x 1440', 'Refresh': '144Hz' } },
-        { id: 5, name: 'Artisan Ceramic Mug Set', category: 'Home Goods', price: 1800, rating: 4.7, image: 'assets/images/mug.png', description: 'Hand-thrown ceramic mugs.', specs: { 'Count': 'Set of 4', 'Safe': 'Microwave' } },
-        { id: 6, name: 'Smart Fitness Watch', category: 'Electronics', price: 8999, rating: 4.6, image: 'assets/images/watch.png', description: 'Track your health in style.', specs: { 'Battery': '7 Days', 'Waterproof': '5ATM' } },
-        { id: 7, name: 'Stainless Water Bottle', category: 'Accessories', price: 1200, rating: 4.8, image: 'assets/images/bottle.png', description: 'Keeps drinks cold for 24 hours.', specs: { 'Capacity': '1L', 'Material': 'Steel' } },
-        { id: 8, name: 'Winter Wool Scarf', category: 'Apparel', price: 2500, rating: 4.4, image: 'assets/images/scarf.jpg', description: 'Soft wool blend perfect for winter.', specs: { 'Material': 'Wool', 'Size': 'One Size' } },
-        { id: 9, name: 'Minimalist Backpack', category: 'Accessories', price: 5500, rating: 4.7, image: 'assets/images/bag.png', description: 'Water-resistant daily carry.', specs: { 'Volume': '20L', 'Laptop': '15 inch' } },
-        { id: 10, name: 'Mechanical Keyboard', category: 'Electronics', price: 12500, rating: 4.9, image: 'assets/images/keyboard.png', description: 'Tactile switches for typing bliss.', specs: { 'Switch': 'Brown', 'RGB': 'Yes' } },
-        { id: 11, name: 'Polarized Sunglasses', category: 'Accessories', price: 3500, rating: 4.3, image: 'assets/images/glasses.png', description: 'Classic aviator style.', specs: { 'UV': '400', 'Frame': 'Metal' } },
-        { id: 12, name: 'Bamboo Plant Stand', category: 'Home Goods', price: 1500, rating: 4.5, image: 'assets/images/stand.png', description: 'Eco-friendly decor.', specs: { 'Material': 'Bamboo', 'Height': '50cm' } },
-        { id: 13, name: 'Wireless Earbuds', category: 'Electronics', price: 4999, rating: 4.4, image: 'assets/images/buds.png', description: 'Compact sound.', specs: { 'Battery': '20 Hours', 'Case': 'Wireless Charging' } },
-        { id: 14, name: 'Denim Jacket', category: 'Apparel', price: 4200, rating: 4.6, image: 'assets/images/jacket.png', description: 'Vintage wash classic.', specs: { 'Fit': 'Regular', 'Material': 'Cotton' } },
-        { id: 15, name: 'Scented Candle', category: 'Home Goods', price: 800, rating: 4.8, image: 'assets/images/candle.png', description: 'Lavender and Vanilla.', specs: { 'Burn Time': '40 Hours', 'Wax': 'Soy' } },
-        { id: 16, name: 'Running Shoes', category: 'Apparel', price: 6500, rating: 4.7, image: 'assets/images/shoes.png', description: 'Lightweight performance.', specs: { 'Sole': 'Rubber', 'Drop': '10mm' } },
-        { id: 17, name: 'Analog Watch', category: 'Accessories', price: 7500, rating: 4.5, image: 'assets/images/analog_watch.png', description: 'Timeless elegance.', specs: { 'Movement': 'Quartz', 'Water Resistant': '30m' } },
-        { id: 18, name: 'Throw Blanket', category: 'Home Goods', price: 2200, rating: 4.9, image: 'assets/images/blanket.png', description: 'Cozy knitted throw.', specs: { 'Material': 'Acrylic', 'Size': '150x200cm' } }
+        { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.webp', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
+        { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.webp', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
+        { id: 3, name: 'Silk Blend Tee', category: 'Apparel', price: 3200, rating: 4.2, image: 'assets/images/tshirt.webp', description: 'Luxuriously soft silk-cotton blend.', specs: { 'Fabric': 'Cotton/Silk', 'Fit': 'Regular' } },
+        { id: 4, name: 'UltraWide 4K Monitor', category: 'Electronics', price: 42000, rating: 4.9, image: 'assets/images/monitor.webp', description: '34-inch curved display for creators.', specs: { 'Resolution': '3440 x 1440', 'Refresh': '144Hz' } },
+        { id: 5, name: 'Artisan Ceramic Mug Set', category: 'Home Goods', price: 1800, rating: 4.7, image: 'assets/images/mug.webp', description: 'Hand-thrown ceramic mugs.', specs: { 'Count': 'Set of 4', 'Safe': 'Microwave' } },
+        { id: 6, name: 'Smart Fitness Watch', category: 'Electronics', price: 8999, rating: 4.6, image: 'assets/images/watch.webp', description: 'Track your health in style.', specs: { 'Battery': '7 Days', 'Waterproof': '5ATM' } },
+        { id: 7, name: 'Stainless Water Bottle', category: 'Accessories', price: 1200, rating: 4.8, image: 'assets/images/bottle.webp', description: 'Keeps drinks cold for 24 hours.', specs: { 'Capacity': '1L', 'Material': 'Steel' } },
+        { id: 8, name: 'Winter Wool Scarf', category: 'Apparel', price: 2500, rating: 4.4, image: 'assets/images/scarf.webp', description: 'Soft wool blend perfect for winter.', specs: { 'Material': 'Wool', 'Size': 'One Size' } },
+        { id: 9, name: 'Minimalist Backpack', category: 'Accessories', price: 5500, rating: 4.7, image: 'assets/images/bag.webp', description: 'Water-resistant daily carry.', specs: { 'Volume': '20L', 'Laptop': '15 inch' } },
+        { id: 10, name: 'Mechanical Keyboard', category: 'Electronics', price: 12500, rating: 4.9, image: 'assets/images/keyboard.webp', description: 'Tactile switches for typing bliss.', specs: { 'Switch': 'Brown', 'RGB': 'Yes' } },
+        { id: 11, name: 'Polarized Sunglasses', category: 'Accessories', price: 3500, rating: 4.3, image: 'assets/images/glasses.webp', description: 'Classic aviator style.', specs: { 'UV': '400', 'Frame': 'Metal' } },
+        { id: 12, name: 'Bamboo Plant Stand', category: 'Home Goods', price: 1500, rating: 4.5, image: 'assets/images/stand.webp', description: 'Eco-friendly decor.', specs: { 'Material': 'Bamboo', 'Height': '50cm' } },
+        { id: 13, name: 'Wireless Earbuds', category: 'Electronics', price: 4999, rating: 4.4, image: 'assets/images/buds.webp', description: 'Compact sound.', specs: { 'Battery': '20 Hours', 'Case': 'Wireless Charging' } },
+        { id: 14, name: 'Denim Jacket', category: 'Apparel', price: 4200, rating: 4.6, image: 'assets/images/jacket.webp', description: 'Vintage wash classic.', specs: { 'Fit': 'Regular', 'Material': 'Cotton' } },
+        { id: 15, name: 'Scented Candle', category: 'Home Goods', price: 800, rating: 4.8, image: 'assets/images/candle.webp', description: 'Lavender and Vanilla.', specs: { 'Burn Time': '40 Hours', 'Wax': 'Soy' } },
+        { id: 16, name: 'Running Shoes', category: 'Apparel', price: 6500, rating: 4.7, image: 'assets/images/shoes.webp', description: 'Lightweight performance.', specs: { 'Sole': 'Rubber', 'Drop': '10mm' } },
+        { id: 17, name: 'Analog Watch', category: 'Accessories', price: 7500, rating: 4.5, image: 'assets/images/analog_watch.webp', description: 'Timeless elegance.', specs: { 'Movement': 'Quartz', 'Water Resistant': '30m' } },
+        { id: 18, name: 'Throw Blanket', category: 'Home Goods', price: 2200, rating: 4.9, image: 'assets/images/blanket.webp', description: 'Cozy knitted throw.', specs: { 'Material': 'Acrylic', 'Size': '150x200cm' } }
     ];
 
     // --- 2. STATE ---
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- 5. STORAGE & THEME (FIXED DEFAULT LIGHT) ---
+    // --- 5. STORAGE & THEME ---
     function saveData() {
         localStorage.setItem('luxeCart', JSON.stringify(cart));
         localStorage.setItem('luxeWishlists', JSON.stringify(wishlists));
@@ -70,21 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedCart) {
             try {
                 cart = JSON.parse(storedCart);
-                // SANITIZATION: Fix items from old sessions that might lack qty/selected
                 cart = cart.map(item => ({
                     ...item,
-                    qty: item.qty || 1,
+                    qty: item.qty ? parseInt(item.qty) : 1,
                     selected: item.selected !== undefined ? item.selected : true
                 }));
             } catch (e) {
-                console.error("Cart data corrupted, resetting.");
                 cart = [];
             }
         }
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
         
-        // Default to Light Mode unless Dark is explicit
+        // Default Light Mode
         if (storedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('theme-icon').innerHTML = SUN_ICON;
@@ -105,22 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. HELPER FUNCTIONS ---
     function isInAnyWishlist(id) {
         return Object.values(wishlists).flat().some(item => item.id === id);
-    }
-    function syncCartButtons(id) {
-        const isInCart = cart.some(item => item.id === id);
-        const buttons = document.querySelectorAll(`button[data-id="${id}"]`);
-        buttons.forEach(btn => {
-            if (isInCart) {
-                if (!btn.classList.contains('remove-btn') && !btn.classList.contains('added-success')) {
-                     const item = cart.find(i => i.id === id);
-                     btn.textContent = `In Cart (${item.qty})`;
-                }
-            } else {
-                btn.textContent = "Add to Cart";
-                btn.classList.remove('remove-btn', 'added-success');
-                btn.classList.add('add-btn');
-            }
-        });
     }
     function getStarRating(rating) {
         const fullStar = `<svg class="star-icon" viewBox="0 0 24 24" fill="#f1c40f"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
@@ -144,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo(0, 0);
             if(viewId === 'wishlist-view') renderWishlistPage();
             if(viewId === 'orders-view') renderOrdersPage(); 
-            if(viewId === 'cart-view') showCartView();
+            // FIX: Removed the self-calling cart rendering loop here
         }
     };
 
@@ -165,8 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnText = isInCart ? `In Cart (${cartItem.qty})` : "Add to Cart";
             const btnClass = isInCart ? "add-btn" : "add-btn"; 
             const heartClass = isWishlisted ? "wishlist-heart active" : "wishlist-heart";
-
-            // Fallback for broken images
             const fallbackImage = 'https://placehold.co/400x400?text=No+Image';
 
             const html = `
@@ -198,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- 9. CART LOGIC (FIXED) ---
+    // --- 9. CART LOGIC ---
     window.handleCartClick = function(event, id) {
         event.stopPropagation();
         const btn = event.target;
@@ -251,18 +231,20 @@ document.addEventListener('DOMContentLoaded', () => {
         let subtotal = 0;
         
         const allSelected = cart.length > 0 && cart.every(item => item.selected);
-        selectAllBox.checked = allSelected;
+        if(selectAllBox) selectAllBox.checked = allSelected;
 
         if (cart.length === 0) {
-            list.innerHTML = '<p>Your cart is empty.</p>';
+            list.innerHTML = '<p style="text-align:center; padding:20px;">Your cart is empty.</p>';
             subtotalSpan.textContent = '₹0.00';
             totalSpan.textContent = '₹0.00';
-            selectAllBox.checked = false;
+            if(selectAllBox) selectAllBox.checked = false;
         } else {
             cart.forEach(item => {
-                if(item.selected) subtotal += (item.price * item.qty);
+                const quantity = parseInt(item.qty) || 1;
+                const itemPrice = parseInt(item.price) || 0;
+                
+                if(item.selected) subtotal += (itemPrice * quantity);
 
-                // Image Fallback
                 const imgSrc = item.image || 'https://placehold.co/400x400?text=No+Image';
 
                 list.insertAdjacentHTML('beforeend', `
@@ -274,14 +256,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${imgSrc}" onclick="showProductDetail(${item.id})" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                         <div onclick="showProductDetail(${item.id})" style="cursor:pointer; font-weight:bold;">
                             ${item.name}
-                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(item.price)}</div>
+                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(itemPrice)}</div>
                         </div>
                         <div class="cart-qty-controls">
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, -1)">-</button>
-                            <span class="cart-qty-val">${item.qty}</span>
+                            <span class="cart-qty-val">${quantity}</span>
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, 1)">+</button>
                         </div>
-                        <div style="font-weight:bold;">${formatPrice(item.price * item.qty)}</div>
+                        <div style="font-weight:bold;">${formatPrice(itemPrice * quantity)}</div>
                         <div class="cart-actions-col">
                             <button onclick="removeFromCart(${item.id})" style="color:red; background:none; border:none; cursor:pointer;">Remove</button>
                             <button class="move-wishlist-btn" onclick="moveToWishlist(${item.id})">Move to Wishlist</button>
@@ -306,21 +288,27 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleSelectAll = function(checkbox) {
         const isChecked = checkbox.checked;
         cart.forEach(item => item.selected = isChecked);
-        saveData(); showCartView();
+        saveData(); 
+        setTimeout(showCartView, 0); 
     };
     window.toggleCartItemSelection = function(id) {
         const item = cart.find(i => i.id === id);
         if(item) {
             item.selected = !item.selected;
-            saveData(); showCartView();
+            saveData(); 
+            setTimeout(showCartView, 0);
         }
     };
     window.updateCartQty = function(id, change) {
         const item = cart.find(i => i.id === id);
         if(item) {
-            item.qty += change;
-            if(item.qty <= 0) removeFromCart(id); 
-            else { saveData(); showCartView(); }
+            item.qty = (parseInt(item.qty) || 1) + change;
+            if(item.qty <= 0) {
+                removeFromCart(id); 
+            } else {
+                saveData(); 
+                setTimeout(showCartView, 0); 
+            }
         }
     };
     window.applyPromoCode = function() {
@@ -329,22 +317,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (code === 'LUXE20') { currentDiscount = 0.20; showToast("20% Applied!"); } 
         else if (code === 'SAVE10') { currentDiscount = 0.10; showToast("10% Applied!"); } 
         else { currentDiscount = 0; showToast("Invalid Code", "error"); }
-        showCartView(); 
+        setTimeout(showCartView, 0); 
     };
     
-    // FIX: Re-render cart on remove to prevent "disappearing" UI glitches
     window.removeFromCart = function(id) {
         cart = cart.filter(p => p.id !== id);
         saveData(); 
         updateCartUI();
-        if (document.getElementById('cart-view').classList.contains('active')) window.showCartView();
+        const cartView = document.getElementById('cart-view');
+        if (cartView && cartView.classList.contains('active')) {
+            setTimeout(showCartView, 0);
+        }
         
         const btn = document.querySelector(`button[data-id="${id}"]`);
         if(btn) { btn.textContent = "Add to Cart"; btn.classList.remove('added-success'); }
     };
     
     function updateCartUI() {
-        const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+        const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty) || 1), 0);
         if(cartCountSpan) cartCountSpan.textContent = totalCount;
     }
 
@@ -440,6 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.value = this.value.replace(/[^0-9 ]/g, '');
         });
     }
+    
     window.cancelOrder = function(orderId) {
         const order = orders.find(o => o.id === orderId);
         if(order && order.status === 'Processing') {
@@ -447,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('confirmation-modal').classList.add('active'); 
         }
     };
+
     window.confirmCancelOrder = function() {
         if (!orderIdToCancel) return;
         const order = orders.find(o => o.id === orderIdToCancel);
@@ -459,13 +451,15 @@ document.addEventListener('DOMContentLoaded', () => {
         closeConfirmationModal();
         orderIdToCancel = null;
     };
+
     window.closeConfirmationModal = function() {
         document.getElementById('confirmation-modal').classList.remove('active');
     };
+
     window.openCheckoutModal = function() {
         const selectedItems = cart.filter(i => i.selected);
         if (selectedItems.length === 0) { showToast("Select items to checkout!", "error"); return; }
-        const subtotal = selectedItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const subtotal = selectedItems.reduce((sum, item) => sum + ((parseInt(item.price)||0) * (parseInt(item.qty)||1)), 0);
         const discount = subtotal * currentDiscount;
         const total = subtotal - discount;
         document.getElementById('checkout-total').textContent = formatPrice(total);
@@ -480,8 +474,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             document.getElementById('checkout-modal').classList.remove('active');
             const selectedItems = cart.filter(i => i.selected);
-            const subtotal = selectedItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            // Calculate totals
+            const subtotal = selectedItems.reduce((sum, item) => sum + ((parseInt(item.price)||0) * (parseInt(item.qty)||1)), 0);
             const total = subtotal - (subtotal * currentDiscount);
+            
             const newOrder = {
                 id: Math.floor(Math.random() * 1000000),
                 date: new Date().toLocaleDateString(),
@@ -540,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- 12. DETAIL PAGE (RE-DESIGNED RENDER) ---
+    // --- 12. DETAIL PAGE ---
     window.showProductDetail = function(id) {
         const product = products.find(p => p.id === id);
         const container = document.getElementById('detail-content');
