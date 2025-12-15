@@ -1,26 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
-    // --- 1. DATA ---
+    // --- 1. DATA (Your Specific List) ---
     const products = [
-        { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
-        { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&q=80', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
-        { id: 3, name: 'Silk Blend Tee', category: 'Apparel', price: 3200, rating: 4.2, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80', description: 'Luxuriously soft silk-cotton blend.', specs: { 'Fabric': 'Cotton/Silk', 'Fit': 'Regular' } },
-        { id: 4, name: 'UltraWide 4K Monitor', category: 'Electronics', price: 42000, rating: 4.9, image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80', description: '34-inch curved display for creators.', specs: { 'Resolution': '3440 x 1440', 'Refresh': '144Hz' } },
-        { id: 5, name: 'Artisan Ceramic Set', category: 'Home Goods', price: 1800, rating: 4.7, image: 'assets/images/mug.jpg', description: 'Hand-thrown ceramic mugs.', specs: { 'Count': 'Set of 4', 'Safe': 'Microwave' } },
-        { id: 6, name: 'Smart Fitness Watch', category: 'Electronics', price: 8999, rating: 4.6, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80', description: 'Track your health in style.', specs: { 'Battery': '7 Days', 'Waterproof': '5ATM' } },
-        { id: 7, name: 'Stainless Water Bottle', category: 'Accessories', price: 1200, rating: 4.8, image: 'https://images.unsplash.com/photo-1602143407151-011141959309?w=500&q=80', description: 'Keeps drinks cold for 24 hours.', specs: { 'Capacity': '1L', 'Material': 'Steel' } },
+        { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.png', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
+        { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.png', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
+        { id: 3, name: 'Silk Blend Tee', category: 'Apparel', price: 3200, rating: 4.2, image: 'assets/images/tshirt.png', description: 'Luxuriously soft silk-cotton blend.', specs: { 'Fabric': 'Cotton/Silk', 'Fit': 'Regular' } },
+        { id: 4, name: 'UltraWide 4K Monitor', category: 'Electronics', price: 42000, rating: 4.9, image: 'assets/images/monitor.png', description: '34-inch curved display for creators.', specs: { 'Resolution': '3440 x 1440', 'Refresh': '144Hz' } },
+        { id: 5, name: 'Artisan Ceramic Mug Set', category: 'Home Goods', price: 1800, rating: 4.7, image: 'assets/images/mug.png', description: 'Hand-thrown ceramic mugs.', specs: { 'Count': 'Set of 4', 'Safe': 'Microwave' } },
+        { id: 6, name: 'Smart Fitness Watch', category: 'Electronics', price: 8999, rating: 4.6, image: 'assets/images/watch.png', description: 'Track your health in style.', specs: { 'Battery': '7 Days', 'Waterproof': '5ATM' } },
+        { id: 7, name: 'Stainless Water Bottle', category: 'Accessories', price: 1200, rating: 4.8, image: 'assets/images/bottle.png', description: 'Keeps drinks cold for 24 hours.', specs: { 'Capacity': '1L', 'Material': 'Steel' } },
         { id: 8, name: 'Winter Wool Scarf', category: 'Apparel', price: 2500, rating: 4.4, image: 'assets/images/scarf.jpg', description: 'Soft wool blend perfect for winter.', specs: { 'Material': 'Wool', 'Size': 'One Size' } },
-        { id: 9, name: 'Minimalist Backpack', category: 'Accessories', price: 5500, rating: 4.7, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80', description: 'Water-resistant daily carry.', specs: { 'Volume': '20L', 'Laptop': '15 inch' } },
-        { id: 10, name: 'Mechanical Keyboard', category: 'Electronics', price: 12500, rating: 4.9, image: 'https://images.unsplash.com/photo-1587829741301-dc798b91add1?w=500&q=80', description: 'Tactile switches for typing bliss.', specs: { 'Switch': 'Brown', 'RGB': 'Yes' } },
-        { id: 11, name: 'Polarized Sunglasses', category: 'Accessories', price: 3500, rating: 4.3, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&q=80', description: 'Classic aviator style.', specs: { 'UV': '400', 'Frame': 'Metal' } },
-        { id: 12, name: 'Bamboo Plant Stand', category: 'Home Goods', price: 1500, rating: 4.5, image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500&q=80', description: 'Eco-friendly decor.', specs: { 'Material': 'Bamboo', 'Height': '50cm' } },
-        { id: 13, name: 'Wireless Earbuds', category: 'Electronics', price: 4999, rating: 4.4, image: 'https://images.unsplash.com/photo-1572569028738-411a783143b9?w=500&q=80', description: 'Compact sound.', specs: { 'Battery': '20 Hours', 'Case': 'Wireless Charging' } },
-        { id: 14, name: 'Denim Jacket', category: 'Apparel', price: 4200, rating: 4.6, image: 'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=500&q=80', description: 'Vintage wash classic.', specs: { 'Fit': 'Regular', 'Material': 'Cotton' } },
-        { id: 15, name: 'Scented Candle', category: 'Home Goods', price: 800, rating: 4.8, image: 'https://images.unsplash.com/photo-1572202636238-8fa7d2d38980?w=500&q=80', description: 'Lavender and Vanilla.', specs: { 'Burn Time': '40 Hours', 'Wax': 'Soy' } },
-        { id: 16, name: 'Running Shoes', category: 'Apparel', price: 6500, rating: 4.7, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80', description: 'Lightweight performance.', specs: { 'Sole': 'Rubber', 'Drop': '10mm' } },
-        { id: 17, name: 'Analog Watch', category: 'Accessories', price: 7500, rating: 4.5, image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=500&q=80', description: 'Timeless elegance.', specs: { 'Movement': 'Quartz', 'Water Resistant': '30m' } },
-        { id: 18, name: 'Throw Blanket', category: 'Home Goods', price: 2200, rating: 4.9, image: 'https://images.unsplash.com/photo-1580301762395-9c64669ebc79?w=500&q=80', description: 'Cozy knitted throw.', specs: { 'Material': 'Acrylic', 'Size': '150x200cm' } }
+        { id: 9, name: 'Minimalist Backpack', category: 'Accessories', price: 5500, rating: 4.7, image: 'assets/images/bag.png', description: 'Water-resistant daily carry.', specs: { 'Volume': '20L', 'Laptop': '15 inch' } },
+        { id: 10, name: 'Mechanical Keyboard', category: 'Electronics', price: 12500, rating: 4.9, image: 'assets/images/keyboard.png', description: 'Tactile switches for typing bliss.', specs: { 'Switch': 'Brown', 'RGB': 'Yes' } },
+        { id: 11, name: 'Polarized Sunglasses', category: 'Accessories', price: 3500, rating: 4.3, image: 'assets/images/glasses.png', description: 'Classic aviator style.', specs: { 'UV': '400', 'Frame': 'Metal' } },
+        { id: 12, name: 'Bamboo Plant Stand', category: 'Home Goods', price: 1500, rating: 4.5, image: 'assets/images/stand.png', description: 'Eco-friendly decor.', specs: { 'Material': 'Bamboo', 'Height': '50cm' } },
+        { id: 13, name: 'Wireless Earbuds', category: 'Electronics', price: 4999, rating: 4.4, image: 'assets/images/buds.png', description: 'Compact sound.', specs: { 'Battery': '20 Hours', 'Case': 'Wireless Charging' } },
+        { id: 14, name: 'Denim Jacket', category: 'Apparel', price: 4200, rating: 4.6, image: 'assets/images/jacket.png', description: 'Vintage wash classic.', specs: { 'Fit': 'Regular', 'Material': 'Cotton' } },
+        { id: 15, name: 'Scented Candle', category: 'Home Goods', price: 800, rating: 4.8, image: 'assets/images/candle.png', description: 'Lavender and Vanilla.', specs: { 'Burn Time': '40 Hours', 'Wax': 'Soy' } },
+        { id: 16, name: 'Running Shoes', category: 'Apparel', price: 6500, rating: 4.7, image: 'assets/images/shoes.png', description: 'Lightweight performance.', specs: { 'Sole': 'Rubber', 'Drop': '10mm' } },
+        { id: 17, name: 'Analog Watch', category: 'Accessories', price: 7500, rating: 4.5, image: 'assets/images/analog_watch.png', description: 'Timeless elegance.', specs: { 'Movement': 'Quartz', 'Water Resistant': '30m' } },
+        { id: 18, name: 'Throw Blanket', category: 'Home Goods', price: 2200, rating: 4.9, image: 'assets/images/blanket.png', description: 'Cozy knitted throw.', specs: { 'Material': 'Acrylic', 'Size': '150x200cm' } }
     ];
 
     // --- 2. STATE ---
@@ -60,22 +60,41 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('luxeWishlists', JSON.stringify(wishlists));
         localStorage.setItem('luxeOrders', JSON.stringify(orders)); 
     }
+    
     function loadData() {
         const storedCart = localStorage.getItem('luxeCart');
         const storedWishlists = localStorage.getItem('luxeWishlists');
         const storedOrders = localStorage.getItem('luxeOrders');
         const storedTheme = localStorage.getItem('luxeTheme');
-        if (storedCart) cart = JSON.parse(storedCart);
+
+        if (storedCart) {
+            try {
+                cart = JSON.parse(storedCart);
+                // SANITIZATION: Fix items from old sessions that might lack qty/selected
+                cart = cart.map(item => ({
+                    ...item,
+                    qty: item.qty || 1,
+                    selected: item.selected !== undefined ? item.selected : true
+                }));
+            } catch (e) {
+                console.error("Cart data corrupted, resetting.");
+                cart = [];
+            }
+        }
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
+        
+        // Default Light Mode
         if (storedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('theme-icon').innerHTML = SUN_ICON;
         } else {
+            document.body.classList.remove('dark-mode');
             document.getElementById('theme-icon').innerHTML = MOON_ICON;
         }
         updateCartUI();
     }
+
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
@@ -146,12 +165,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnText = isInCart ? `In Cart (${cartItem.qty})` : "Add to Cart";
             const btnClass = isInCart ? "add-btn" : "add-btn"; 
             const heartClass = isWishlisted ? "wishlist-heart active" : "wishlist-heart";
+            
+            // Image fallback logic
+            const fallback = 'https://placehold.co/400x400?text=No+Image';
 
             const html = `
                 <div class="product-card" onclick="handleCardClick(event, ${product.id})">
                     <div class="card-image-wrapper">
                         <span class="${heartClass}" data-heart-id="${product.id}" onclick="toggleWishlist(event, ${product.id})">♥</span>
-                        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
+                        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='${fallback}'">
                         <div class="hover-details">
                             <p><strong>Specs:</strong></p>
                             ${Object.entries(product.specs).map(([k,v]) => `<p>${k}: ${v}</p>`).join('').slice(0, 150)}
@@ -176,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- 9. CART LOGIC ---
+    // --- 9. CART LOGIC (ROBUST) ---
     window.handleCartClick = function(event, id) {
         event.stopPropagation();
         const btn = event.target;
@@ -189,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast(`Increased quantity: ${product.name}`);
             btn.textContent = `In Cart (${cartItem.qty})`;
         } else {
+            // Fix: ensure new items have valid qty and selection
             cart.push({ ...product, qty: 1, selected: true });
             saveData(); updateCartUI();
             showToast(`${product.name} added to cart`);
@@ -232,13 +255,20 @@ document.addEventListener('DOMContentLoaded', () => {
         selectAllBox.checked = allSelected;
 
         if (cart.length === 0) {
-            list.innerHTML = '<p>Your cart is empty.</p>';
+            list.innerHTML = '<p style="text-align:center; padding:20px;">Your cart is empty.</p>';
             subtotalSpan.textContent = '₹0.00';
             totalSpan.textContent = '₹0.00';
             selectAllBox.checked = false;
         } else {
             cart.forEach(item => {
-                if(item.selected) subtotal += (item.price * item.qty);
+                // Calculation safety check
+                const quantity = item.qty || 1;
+                const itemPrice = item.price || 0;
+                
+                if(item.selected) subtotal += (itemPrice * quantity);
+
+                // Image Fallback
+                const imgSrc = item.image || 'https://placehold.co/400x400?text=No+Image';
 
                 list.insertAdjacentHTML('beforeend', `
                     <div class="cart-row">
@@ -246,17 +276,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleCartItemSelection(${item.id})">
                             <span class="checkmark"></span>
                         </label>
-                        <img src="${item.image}" onclick="showProductDetail(${item.id})">
+                        <img src="${imgSrc}" onclick="showProductDetail(${item.id})" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                         <div onclick="showProductDetail(${item.id})" style="cursor:pointer; font-weight:bold;">
                             ${item.name}
-                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(item.price)}</div>
+                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(itemPrice)}</div>
                         </div>
                         <div class="cart-qty-controls">
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, -1)">-</button>
-                            <span class="cart-qty-val">${item.qty}</span>
+                            <span class="cart-qty-val">${quantity}</span>
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, 1)">+</button>
                         </div>
-                        <div style="font-weight:bold;">${formatPrice(item.price * item.qty)}</div>
+                        <div style="font-weight:bold;">${formatPrice(itemPrice * quantity)}</div>
                         <div class="cart-actions-col">
                             <button onclick="removeFromCart(${item.id})" style="color:red; background:none; border:none; cursor:pointer;">Remove</button>
                             <button class="move-wishlist-btn" onclick="moveToWishlist(${item.id})">Move to Wishlist</button>
@@ -293,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateCartQty = function(id, change) {
         const item = cart.find(i => i.id === id);
         if(item) {
-            item.qty += change;
+            item.qty = (item.qty || 1) + change;
             if(item.qty <= 0) removeFromCart(id); 
             else { saveData(); showCartView(); }
         }
@@ -315,7 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if(btn) { btn.textContent = "Add to Cart"; btn.classList.remove('added-success'); }
     };
     function updateCartUI() {
-        const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+        // Fix: Safety check for missing qty
+        const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
         if(cartCountSpan) cartCountSpan.textContent = totalCount;
     }
 
@@ -390,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hasItems = true;
             const itemsHTML = wishlists[listName].map(item => `
                 <div class="wishlist-card">
-                    <img src="${item.image}" onclick="showProductDetail(${item.id})">
+                    <img src="${item.image}" onclick="showProductDetail(${item.id})" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                     <h4 onclick="showProductDetail(${item.id})">${item.name}</h4>
                     <p style="font-weight:bold; color:var(--accent); font-size:0.9rem; margin-bottom:5px;">${formatPrice(item.price)}</p>
                     <div class="wishlist-btn-group">
@@ -496,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
         orders.forEach(order => {
             const itemsHTML = order.items.map(item => `
                 <div class="order-item-thumb" title="${item.name}" onclick="showProductDetail(${item.id})">
-                    <img src="${item.image}">
+                    <img src="${item.image}" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                     <p>${item.qty}x ${item.name}</p>
                 </div>
             `).join('');
@@ -525,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnClass = "add-btn";
         
         container.innerHTML = `
-            <div class="detail-image"><img src="${product.image}"></div>
+            <div class="detail-image"><img src="${product.image}" onerror="this.src='https://placehold.co/400x400?text=No+Image'"></div>
             <div class="detail-info">
                 <h1>${product.name}</h1>
                 <div class="rating-stars" style="font-size:1.2rem; justify-content:flex-start;">${getStarRating(product.rating)}</div>
@@ -535,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <ul class="specs-list">${Object.entries(product.specs).map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul>
                 <button class="${btnClass}" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
             </div>
-            <div class="detail-reviews" style="grid-column: 1 / -1;">
+            <div class="detail-reviews">
                 <h3>Customer Reviews</h3>
                 <div style="background:var(--bg-body); padding:20px; border-radius:8px; margin-bottom:15px;">
                     <div class="rating-stars" style="justify-content:flex-start;">★★★★★</div>
