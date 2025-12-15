@@ -2,26 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
     // --- 1. DATA ---
-    const products = [
-        { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.webp', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
-        { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.webp', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
-        { id: 3, name: 'Silk Blend Tee', category: 'Apparel', price: 3200, rating: 4.2, image: 'assets/images/tshirt.webp', description: 'Luxuriously soft silk-cotton blend.', specs: { 'Fabric': 'Cotton/Silk', 'Fit': 'Regular' } },
-        { id: 4, name: 'UltraWide 4K Monitor', category: 'Electronics', price: 42000, rating: 4.9, image: 'assets/images/monitor.webp', description: '34-inch curved display for creators.', specs: { 'Resolution': '3440 x 1440', 'Refresh': '144Hz' } },
-        { id: 5, name: 'Artisan Ceramic Mug Set', category: 'Home Goods', price: 1800, rating: 4.7, image: 'assets/images/mug.webp', description: 'Hand-thrown ceramic mugs.', specs: { 'Count': 'Set of 4', 'Safe': 'Microwave' } },
-        { id: 6, name: 'Smart Fitness Watch', category: 'Electronics', price: 8999, rating: 4.6, image: 'assets/images/watch.webp', description: 'Track your health in style.', specs: { 'Battery': '7 Days', 'Waterproof': '5ATM' } },
-        { id: 7, name: 'Stainless Water Bottle', category: 'Accessories', price: 1200, rating: 4.8, image: 'assets/images/bottle.webp', description: 'Keeps drinks cold for 24 hours.', specs: { 'Capacity': '1L', 'Material': 'Steel' } },
-        { id: 8, name: 'Winter Wool Scarf', category: 'Apparel', price: 2500, rating: 4.4, image: 'assets/images/scarf.webp', description: 'Soft wool blend perfect for winter.', specs: { 'Material': 'Wool', 'Size': 'One Size' } },
-        { id: 9, name: 'Minimalist Backpack', category: 'Accessories', price: 5500, rating: 4.7, image: 'assets/images/bag.webp', description: 'Water-resistant daily carry.', specs: { 'Volume': '20L', 'Laptop': '15 inch' } },
-        { id: 10, name: 'Mechanical Keyboard', category: 'Electronics', price: 12500, rating: 4.9, image: 'assets/images/keyboard.webp', description: 'Tactile switches for typing bliss.', specs: { 'Switch': 'Brown', 'RGB': 'Yes' } },
-        { id: 11, name: 'Polarized Sunglasses', category: 'Accessories', price: 3500, rating: 4.3, image: 'assets/images/glasses.webp', description: 'Classic aviator style.', specs: { 'UV': '400', 'Frame': 'Metal' } },
-        { id: 12, name: 'Bamboo Plant Stand', category: 'Home Goods', price: 1500, rating: 4.5, image: 'assets/images/stand.webp', description: 'Eco-friendly decor.', specs: { 'Material': 'Bamboo', 'Height': '50cm' } },
-        { id: 13, name: 'Wireless Earbuds', category: 'Electronics', price: 4999, rating: 4.4, image: 'assets/images/buds.webp', description: 'Compact sound.', specs: { 'Battery': '20 Hours', 'Case': 'Wireless Charging' } },
-        { id: 14, name: 'Denim Jacket', category: 'Apparel', price: 4200, rating: 4.6, image: 'assets/images/jacket.webp', description: 'Vintage wash classic.', specs: { 'Fit': 'Regular', 'Material': 'Cotton' } },
-        { id: 15, name: 'Scented Candle', category: 'Home Goods', price: 800, rating: 4.8, image: 'assets/images/candle.webp', description: 'Lavender and Vanilla.', specs: { 'Burn Time': '40 Hours', 'Wax': 'Soy' } },
-        { id: 16, name: 'Running Shoes', category: 'Apparel', price: 6500, rating: 4.7, image: 'assets/images/shoes.webp', description: 'Lightweight performance.', specs: { 'Sole': 'Rubber', 'Drop': '10mm' } },
-        { id: 17, name: 'Analog Watch', category: 'Accessories', price: 7500, rating: 4.5, image: 'assets/images/analog_watch.webp', description: 'Timeless elegance.', specs: { 'Movement': 'Quartz', 'Water Resistant': '30m' } },
-        { id: 18, name: 'Throw Blanket', category: 'Home Goods', price: 2200, rating: 4.9, image: 'assets/images/blanket.webp', description: 'Cozy knitted throw.', specs: { 'Material': 'Acrylic', 'Size': '150x200cm' } }
-    ];
+    const LOGO_LIGHT = 'assets/images/logo.webp';       
+    const LOGO_DARK = 'assets/images/logo-dark.webp';   
 
     // --- 2. STATE ---
     let cart = [];
@@ -55,17 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 5. STORAGE & THEME ---
+    // Updated keys to 'horqen' to match rebranding
     function saveData() {
-        localStorage.setItem('luxeCart', JSON.stringify(cart));
-        localStorage.setItem('luxeWishlists', JSON.stringify(wishlists));
-        localStorage.setItem('luxeOrders', JSON.stringify(orders)); 
+        localStorage.setItem('horqenCart', JSON.stringify(cart));
+        localStorage.setItem('horqenWishlists', JSON.stringify(wishlists));
+        localStorage.setItem('horqenOrders', JSON.stringify(orders)); 
     }
     
     function loadData() {
-        const storedCart = localStorage.getItem('luxeCart');
-        const storedWishlists = localStorage.getItem('luxeWishlists');
-        const storedOrders = localStorage.getItem('luxeOrders');
-        const storedTheme = localStorage.getItem('luxeTheme');
+        const storedCart = localStorage.getItem('horqenCart');
+        const storedWishlists = localStorage.getItem('horqenWishlists');
+        const storedOrders = localStorage.getItem('horqenOrders');
+        const storedTheme = localStorage.getItem('horqenTheme');
 
         if (storedCart) {
             try {
@@ -82,17 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
         
-        // Theme Logic
-        if (storedTheme === 'dark') {
+        // --- THEME & LOGO LOGIC (Dark Default) ---
+        const logoImg = document.getElementById('main-logo');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopIcon = document.getElementById('theme-icon');
+
+        if (storedTheme === 'dark' || !storedTheme) {
             document.body.classList.add('dark-mode');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = SUN_ICON;
+            if(desktopIcon) desktopIcon.innerHTML = SUN_ICON;
             if(mobileIcon) mobileIcon.innerHTML = SUN_ICON;
+            if(logoImg) logoImg.src = LOGO_DARK; 
+            if (!storedTheme) localStorage.setItem('horqenTheme', 'dark');
         } else {
             document.body.classList.remove('dark-mode');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = MOON_ICON;
+            if(desktopIcon) desktopIcon.innerHTML = MOON_ICON;
             if(mobileIcon) mobileIcon.innerHTML = MOON_ICON;
+            if(logoImg) logoImg.src = LOGO_LIGHT;
         }
         updateCartUI();
     }
@@ -100,12 +88,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        const iconHTML = isDark ? SUN_ICON : MOON_ICON;
         
+        const iconHTML = isDark ? SUN_ICON : MOON_ICON;
         if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = iconHTML;
         if(document.getElementById('mobile-theme-icon')) document.getElementById('mobile-theme-icon').innerHTML = iconHTML;
         
-        localStorage.setItem('luxeTheme', isDark ? 'dark' : 'light');
+        const logoImg = document.getElementById('main-logo');
+        if (logoImg) {
+            logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        }
+        
+        localStorage.setItem('horqenTheme', isDark ? 'dark' : 'light');
     };
 
     window.toggleMobileFilters = function() {
@@ -168,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
                         <div class="rating-stars">${getStarRating(product.rating)}</div>
-                        <p style="color:#888; font-size:0.8rem">${product.category}</p>
+                        <p style="color:#888; font-size:0.8rem">${product.brand}</p>
                         <p class="product-price">${formatPrice(product.price)}</p>
                         <button class="add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
                     </div>
@@ -320,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyPromoCode = function() {
         const input = document.getElementById('promo-code-input');
         const code = input.value.trim().toUpperCase();
-        if (code === 'LUXE20') { currentDiscount = 0.20; showToast("20% Applied!"); } 
+        if (code === 'HORQEN20') { currentDiscount = 0.20; showToast("20% Applied!"); } 
         else if (code === 'SAVE10') { currentDiscount = 0.10; showToast("10% Applied!"); } 
         else { currentDiscount = 0; showToast("Invalid Code", "error"); }
         setTimeout(showCartView, 0); 
@@ -598,29 +591,107 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+        
+        // Add Bubble Zoom Logic
+        const imgContainer = container.querySelector('.detail-image');
+        const img = imgContainer.querySelector('img');
+        
+        imgContainer.addEventListener('mousemove', function(e) {
+            const { left, top, width, height } = this.getBoundingClientRect();
+            const x = ((e.clientX - left) / width) * 100;
+            const y = ((e.clientY - top) / height) * 100;
+            
+            img.style.transformOrigin = `${x}% ${y}%`;
+            img.style.transform = "scale(2)"; // Zoom scale factor
+        });
+        
+        imgContainer.addEventListener('mouseleave', function() {
+            img.style.transformOrigin = "center";
+            img.style.transform = "scale(1)";
+        });
+
         window.switchView('product-detail-view');
     };
 
-    // --- 13. FILTERS ---
-    function populateCategoryFilters() {
+    // --- 13. FILTERS (UPDATED WITH ACCORDION) ---
+    function populateFilters() {
+        
+        // Helper to generate the accordion HTML structure
+        const createAccordion = (title, id, items, typeClass) => {
+            const htmlItems = items.map(item => `
+                <div style="margin-bottom:8px;">
+                    <label style="font-weight:normal; text-transform:none; display:flex; align-items:center; gap:8px; cursor:pointer;">
+                        <input type="checkbox" value="${item}" class="${typeClass}"> ${item}
+                    </label>
+                </div>
+            `).join('');
+
+            return `
+                <div class="filter-header" onclick="toggleFilterAccordion('${id}-content', this)">
+                    ${title}
+                </div>
+                <div id="${id}-content" class="filter-content">
+                    ${htmlItems}
+                </div>
+            `;
+        };
+
+        // 1. Categories
         const categories = [...new Set(products.map(p => p.category))];
-        const container = document.getElementById('category-filters');
-        container.innerHTML = ''; 
-        categories.forEach(cat => {
-            container.insertAdjacentHTML('beforeend', `<div><label style="font-weight:normal; text-transform:none;"><input type="checkbox" value="${cat}" class="category-filter"> ${cat}</label></div>`);
-        });
+        const catContainer = document.getElementById('category-filters');
+        if(catContainer) {
+            catContainer.parentElement.innerHTML = createAccordion('Categories', 'cat', categories, 'category-filter');
+        }
+
+        // 2. Brands
+        const brands = [...new Set(products.map(p => p.brand))].sort();
+        const brandContainer = document.getElementById('brand-filters');
+        if(brandContainer) {
+            brandContainer.parentElement.innerHTML = createAccordion('Brands', 'brand', brands, 'brand-filter');
+        }
     }
+
+    // New Helper to Toggle the Accordion
+    window.toggleFilterAccordion = function(contentId, headerElement) {
+        const content = document.getElementById(contentId);
+        if(content) {
+            content.classList.toggle('show');
+            headerElement.classList.toggle('active');
+        }
+    };
+
     const applyBtn = document.getElementById('apply-filters');
     if(applyBtn) {
         applyBtn.addEventListener('click', () => {
             const sortValue = document.getElementById('sort-select').value;
+            
+            // Get selected categories
             const checkedCats = Array.from(document.querySelectorAll('.category-filter:checked')).map(i => i.value);
-            let filtered = checkedCats.length ? products.filter(p => checkedCats.includes(p.category)) : products;
+            
+            // Get selected brands
+            const checkedBrands = Array.from(document.querySelectorAll('.brand-filter:checked')).map(i => i.value);
+
+            // Filter Logic
+            let filtered = products.filter(p => {
+                const matchesCat = checkedCats.length === 0 || checkedCats.includes(p.category);
+                const matchesBrand = checkedBrands.length === 0 || checkedBrands.includes(p.brand);
+                return matchesCat && matchesBrand;
+            });
+
+            // Sort Logic
             if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
             if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            
+            // Update View
             window.renderProducts(filtered);
+            
+            // On mobile, close sidebar after applying
+            if(window.innerWidth <= 768) {
+                toggleMobileFilters();
+            }
         });
     }
+
     document.getElementById('search-input').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         const filtered = products.filter(p => p.name.toLowerCase().includes(term));
@@ -632,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         console.log("Initializing...");
         loadData();
-        populateCategoryFilters();
+        populateFilters(); 
         window.renderProducts(products);
     } catch (error) { console.error("Init Error:", error); }
 });
