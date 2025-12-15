@@ -39,7 +39,6 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 
 /* --- HERO SECTION --- */
 .hero-section {
-    /* background: url('https://images.unsplash.com/photo-1547996663-0b586d544743?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); */
     background: url('assets/images/banner2.webp');
     background-size: cover; background-position: center; background-attachment: fixed;
     height: 70vh; position: relative; margin-bottom: 0; 
@@ -71,37 +70,27 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .icon-group:hover { color: var(--accent); }
 
 /* --- HEADER BRANDING --- */
-/* .branding { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: opacity 0.2s; }
-.branding:hover { opacity: 0.8; }
-.logo-img { height: 85px; width: auto; object-fit: contain; }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text-main); margin: 0; line-height: 1; } */
-
-/* --- HEADER BRANDING --- */
 .branding { 
     display: flex; 
     align-items: center; 
-    gap: 15px; /* Space between Icon and Text */
+    gap: 15px; 
     cursor: pointer; 
     transition: opacity 0.2s; 
 }
 .branding:hover { opacity: 0.8; }
 
-/* The Icon */
 .logo-img { 
     height: 85px; 
     width: auto; 
     object-fit: contain; 
 }
 
-/* The Text Image */
 .text-logo-img {
-    height: 70px; /* Usually slightly shorter than the icon looks best */
+    height: 70px; 
     width: auto;
     object-fit: contain;
-    margin-top: 4px; /* Optical adjustment to align with icon center */
+    margin-top: 4px; 
 }
-
-
 
 /* --- BOTTOM NAV (MOBILE) --- */
 .mobile-nav {
@@ -286,6 +275,49 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .specs-list li { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.9rem; }
 .detail-reviews { width: 100%; margin-top: 30px; border-top: 2px solid var(--border); padding-top: 20px; }
 
+/* --- FOOTER (UPDATED COLORS) --- */
+.site-footer {
+    background-color: var(--bg-card); /* Now adapts to mode (Dark in Dark, Light in Light) */
+    color: var(--text-main);          /* Text color adapts too */
+    padding: 50px 20px 20px 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
+.footer-col h4 { margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; opacity: 0.8; }
+.footer-col a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 8px; opacity: 0.9; transition: opacity 0.2s; font-size: 0.95rem; }
+.footer-col a:hover { opacity: 1; color: var(--accent); }
+
+/* Footer Image */
+.footer-logo-text {
+    height: 40px; 
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.footer-input-group { display: flex; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.footer-input-group input { background: var(--bg-body); border: none; padding: 10px; color: var(--text-main); outline: none; width: 100%; }
+.footer-input-group button { background: var(--accent); border: none; color: white; padding: 0 15px; cursor: pointer; font-weight: bold; }
+
+.footer-bottom { 
+    max-width: 1200px; 
+    margin: 40px auto 0 auto; 
+    border-top: 1px solid var(--border); 
+    padding-top: 20px; 
+    text-align: center; 
+    font-size: 0.8rem; 
+    color: var(--text-muted);
+}
+
 /* --- MODALS --- */
 .modal-overlay { 
     display: none; 
@@ -346,9 +378,9 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     .detail-info h1 { font-size: 1.8rem; }
     .branding { justify-content: center; margin-bottom: 5px; }
     .logo-img { height: 50px; }
-    .text-logo-img {
-        height: 50px; /* Smaller text on mobile */
-    }
+    .text-logo-img { height: 50px; }
+    
+    /* Footer adjustments for mobile */
+    .footer-container { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+    .footer-input-group { justify-content: center; }
 }
-
-/* --- MOBILE ADJUSTMENTS (Update inside @media max-width: 768px) --- */
