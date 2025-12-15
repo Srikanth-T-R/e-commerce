@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
-    // --- 1. DATA (Your Specific List) ---
+    // --- 1. DATA (User Provided) ---
     const products = [
         { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.png', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
         { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.png', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // --- 5. STORAGE & THEME ---
+    // --- 5. STORAGE & THEME (FIXED DEFAULT LIGHT) ---
     function saveData() {
         localStorage.setItem('luxeCart', JSON.stringify(cart));
         localStorage.setItem('luxeWishlists', JSON.stringify(wishlists));
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
         
-        // Default Light Mode
+        // Default to Light Mode unless Dark is explicit
         if (storedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('theme-icon').innerHTML = SUN_ICON;
@@ -165,15 +165,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnText = isInCart ? `In Cart (${cartItem.qty})` : "Add to Cart";
             const btnClass = isInCart ? "add-btn" : "add-btn"; 
             const heartClass = isWishlisted ? "wishlist-heart active" : "wishlist-heart";
-            
-            // Image fallback logic
-            const fallback = 'https://placehold.co/400x400?text=No+Image';
+
+            // Fallback for broken images
+            const fallbackImage = 'https://placehold.co/400x400?text=No+Image';
 
             const html = `
                 <div class="product-card" onclick="handleCardClick(event, ${product.id})">
                     <div class="card-image-wrapper">
                         <span class="${heartClass}" data-heart-id="${product.id}" onclick="toggleWishlist(event, ${product.id})">♥</span>
-                        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='${fallback}'">
+                        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='${fallbackImage}'">
                         <div class="hover-details">
                             <p><strong>Specs:</strong></p>
                             ${Object.entries(product.specs).map(([k,v]) => `<p>${k}: ${v}</p>`).join('').slice(0, 150)}
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- 9. CART LOGIC (ROBUST) ---
+    // --- 9. CART LOGIC (FIXED) ---
     window.handleCartClick = function(event, id) {
         event.stopPropagation();
         const btn = event.target;
@@ -211,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast(`Increased quantity: ${product.name}`);
             btn.textContent = `In Cart (${cartItem.qty})`;
         } else {
-            // Fix: ensure new items have valid qty and selection
             cart.push({ ...product, qty: 1, selected: true });
             saveData(); updateCartUI();
             showToast(`${product.name} added to cart`);
@@ -255,17 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
         selectAllBox.checked = allSelected;
 
         if (cart.length === 0) {
-            list.innerHTML = '<p style="text-align:center; padding:20px;">Your cart is empty.</p>';
+            list.innerHTML = '<p>Your cart is empty.</p>';
             subtotalSpan.textContent = '₹0.00';
             totalSpan.textContent = '₹0.00';
             selectAllBox.checked = false;
         } else {
             cart.forEach(item => {
-                // Calculation safety check
-                const quantity = item.qty || 1;
-                const itemPrice = item.price || 0;
-                
-                if(item.selected) subtotal += (itemPrice * quantity);
+                if(item.selected) subtotal += (item.price * item.qty);
 
                 // Image Fallback
                 const imgSrc = item.image || 'https://placehold.co/400x400?text=No+Image';
@@ -279,14 +274,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${imgSrc}" onclick="showProductDetail(${item.id})" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
                         <div onclick="showProductDetail(${item.id})" style="cursor:pointer; font-weight:bold;">
                             ${item.name}
-                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(itemPrice)}</div>
+                            <div style="font-weight:normal; font-size:0.85rem; color:#888;">${formatPrice(item.price)}</div>
                         </div>
                         <div class="cart-qty-controls">
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, -1)">-</button>
-                            <span class="cart-qty-val">${quantity}</span>
+                            <span class="cart-qty-val">${item.qty}</span>
                             <button class="cart-qty-btn" type="button" onclick="updateCartQty(${item.id}, 1)">+</button>
                         </div>
-                        <div style="font-weight:bold;">${formatPrice(itemPrice * quantity)}</div>
+                        <div style="font-weight:bold;">${formatPrice(item.price * item.qty)}</div>
                         <div class="cart-actions-col">
                             <button onclick="removeFromCart(${item.id})" style="color:red; background:none; border:none; cursor:pointer;">Remove</button>
                             <button class="move-wishlist-btn" onclick="moveToWishlist(${item.id})">Move to Wishlist</button>
@@ -323,30 +318,33 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateCartQty = function(id, change) {
         const item = cart.find(i => i.id === id);
         if(item) {
-            item.qty = (item.qty || 1) + change;
+            item.qty += change;
             if(item.qty <= 0) removeFromCart(id); 
             else { saveData(); showCartView(); }
         }
     };
     window.applyPromoCode = function() {
         const input = document.getElementById('promo-code-input');
-        const msg = document.getElementById('promo-message');
         const code = input.value.trim().toUpperCase();
         if (code === 'LUXE20') { currentDiscount = 0.20; showToast("20% Applied!"); } 
         else if (code === 'SAVE10') { currentDiscount = 0.10; showToast("10% Applied!"); } 
         else { currentDiscount = 0; showToast("Invalid Code", "error"); }
         showCartView(); 
     };
+    
+    // FIX: Re-render cart on remove to prevent "disappearing" UI glitches
     window.removeFromCart = function(id) {
         cart = cart.filter(p => p.id !== id);
-        saveData(); updateCartUI();
+        saveData(); 
+        updateCartUI();
         if (document.getElementById('cart-view').classList.contains('active')) window.showCartView();
+        
         const btn = document.querySelector(`button[data-id="${id}"]`);
         if(btn) { btn.textContent = "Add to Cart"; btn.classList.remove('added-success'); }
     };
+    
     function updateCartUI() {
-        // Fix: Safety check for missing qty
-        const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+        const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
         if(cartCountSpan) cartCountSpan.textContent = totalCount;
     }
 
@@ -442,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.value = this.value.replace(/[^0-9 ]/g, '');
         });
     }
-    
     window.cancelOrder = function(orderId) {
         const order = orders.find(o => o.id === orderId);
         if(order && order.status === 'Processing') {
@@ -450,7 +447,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('confirmation-modal').classList.add('active'); 
         }
     };
-
     window.confirmCancelOrder = function() {
         if (!orderIdToCancel) return;
         const order = orders.find(o => o.id === orderIdToCancel);
@@ -463,11 +459,9 @@ document.addEventListener('DOMContentLoaded', () => {
         closeConfirmationModal();
         orderIdToCancel = null;
     };
-
     window.closeConfirmationModal = function() {
         document.getElementById('confirmation-modal').classList.remove('active');
     };
-
     window.openCheckoutModal = function() {
         const selectedItems = cart.filter(i => i.selected);
         if (selectedItems.length === 0) { showToast("Select items to checkout!", "error"); return; }
