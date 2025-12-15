@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. DATA ---
     const LOGO_LIGHT = 'assets/images/logo.webp';       
-    const LOGO_DARK = 'assets/images/logo-dark.webp';   
+    const LOGO_DARK = 'assets/images/logo-dark.webp';
+    const TEXT_LIGHT = 'assets/images/horqen.webp';
 
     // --- 2. STATE ---
     let cart = [];
@@ -67,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- THEME & LOGO LOGIC (Dark Default) ---
         const logoImg = document.getElementById('main-logo');
+        const textImg = document.getElementById('text-logo');
+        const footerTextImg = document.getElementById('footer-logo-text');
         const mobileIcon = document.getElementById('mobile-theme-icon');
         const desktopIcon = document.getElementById('theme-icon');
 
@@ -74,13 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('dark-mode');
             if(desktopIcon) desktopIcon.innerHTML = SUN_ICON;
             if(mobileIcon) mobileIcon.innerHTML = SUN_ICON;
+            
+            // Dark Mode Images
             if(logoImg) logoImg.src = LOGO_DARK; 
+
             if (!storedTheme) localStorage.setItem('horqenTheme', 'dark');
         } else {
             document.body.classList.remove('dark-mode');
             if(desktopIcon) desktopIcon.innerHTML = MOON_ICON;
             if(mobileIcon) mobileIcon.innerHTML = MOON_ICON;
+            
+            // Light Mode Images
             if(logoImg) logoImg.src = LOGO_LIGHT;
+            if(textImg) textImg.src = TEXT_LIGHT;
+            if(footerTextImg) footerTextImg.src = TEXT_LIGHT;
         }
         updateCartUI();
     }
@@ -93,10 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = iconHTML;
         if(document.getElementById('mobile-theme-icon')) document.getElementById('mobile-theme-icon').innerHTML = iconHTML;
         
+        // Image Elements
         const logoImg = document.getElementById('main-logo');
-        if (logoImg) {
-            logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
-        }
+        const textImg = document.getElementById('text-logo');
+        const footerTextImg = document.getElementById('footer-logo-text');
+
+        // Swap Logic
+        if (logoImg) logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
         
         localStorage.setItem('horqenTheme', isDark ? 'dark' : 'light');
     };
