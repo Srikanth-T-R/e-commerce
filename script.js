@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
-    // --- 1. DATA (Your .webp Images) ---
+    // --- 1. DATA ---
     const products = [
         { id: 1, name: 'Noise Cancelling Pro', category: 'Electronics', price: 24999, rating: 4.8, image: 'assets/images/headphones.webp', description: 'Industry-leading noise cancellation.', specs: { 'Battery': '30 Hours', 'Weight': '250g' } },
         { id: 2, name: 'Leather Bifold', category: 'Accessories', price: 4500, rating: 4.5, image: 'assets/images/wallet.webp', description: 'Hand-stitched full-grain leather.', specs: { 'Material': 'Leather', 'Warranty': '5 Years' } },
@@ -82,13 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
         
-        // Default Light Mode
+        // Theme Logic
         if (storedTheme === 'dark') {
             document.body.classList.add('dark-mode');
-            document.getElementById('theme-icon').innerHTML = SUN_ICON;
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = SUN_ICON;
+            if(mobileIcon) mobileIcon.innerHTML = SUN_ICON;
         } else {
             document.body.classList.remove('dark-mode');
-            document.getElementById('theme-icon').innerHTML = MOON_ICON;
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+            if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = MOON_ICON;
+            if(mobileIcon) mobileIcon.innerHTML = MOON_ICON;
         }
         updateCartUI();
     }
@@ -96,8 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleDarkMode = function() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        document.getElementById('theme-icon').innerHTML = isDark ? SUN_ICON : MOON_ICON;
+        const iconHTML = isDark ? SUN_ICON : MOON_ICON;
+        
+        if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = iconHTML;
+        if(document.getElementById('mobile-theme-icon')) document.getElementById('mobile-theme-icon').innerHTML = iconHTML;
+        
         localStorage.setItem('luxeTheme', isDark ? 'dark' : 'light');
+    };
+
+    window.toggleMobileFilters = function() {
+        document.getElementById('filter-sidebar').classList.toggle('active');
     };
 
     // --- 6. HELPER FUNCTIONS ---
@@ -126,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo(0, 0);
             if(viewId === 'wishlist-view') renderWishlistPage();
             if(viewId === 'orders-view') renderOrdersPage(); 
-            // FIX: Removed the self-calling cart rendering loop here
         }
     };
 
@@ -145,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const isWishlisted = isInAnyWishlist(product.id);
             
             const btnText = isInCart ? `In Cart (${cartItem.qty})` : "Add to Cart";
-            const btnClass = isInCart ? "add-btn" : "add-btn"; 
             const heartClass = isWishlisted ? "wishlist-heart active" : "wishlist-heart";
             const fallbackImage = 'https://placehold.co/400x400?text=No+Image';
 
@@ -154,17 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card-image-wrapper">
                         <span class="${heartClass}" data-heart-id="${product.id}" onclick="toggleWishlist(event, ${product.id})">♥</span>
                         <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='${fallbackImage}'">
-                        <div class="hover-details">
-                            <p><strong>Specs:</strong></p>
-                            ${Object.entries(product.specs).map(([k,v]) => `<p>${k}: ${v}</p>`).join('').slice(0, 150)}
-                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
                         <div class="rating-stars">${getStarRating(product.rating)}</div>
                         <p style="color:#888; font-size:0.8rem">${product.category}</p>
                         <p class="product-price">${formatPrice(product.price)}</p>
-                        <button class="${btnClass}" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
+                        <button class="add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
                     </div>
                 </div>
             `;
@@ -266,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div style="font-weight:bold;">${formatPrice(itemPrice * quantity)}</div>
                         <div class="cart-actions-col">
                             <button onclick="removeFromCart(${item.id})" style="color:red; background:none; border:none; cursor:pointer;">Remove</button>
-                            <button class="move-wishlist-btn" onclick="moveToWishlist(${item.id})">Move to Wishlist</button>
+                            <button class="move-wishlist-btn" onclick="moveToWishlist(${item.id})">Move to wishlist</button>
                         </div>
                     </div>
                 `);
@@ -336,6 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCartUI() {
         const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty) || 1), 0);
         if(cartCountSpan) cartCountSpan.textContent = totalCount;
+        const mobileBadge = document.getElementById('mobile-cart-badge');
+        if(mobileBadge) mobileBadge.textContent = totalCount;
     }
 
     // --- 10. WISHLIST LOGIC ---
@@ -418,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `).join('');
-            container.insertAdjacentHTML('beforeend', `<div class="wishlist-group"><h3>${listName} <span style="font-size:0.9rem; color:#888;">(${wishlists[listName].length})</span></h3><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;">${itemsHTML}</div></div>`);
+            container.insertAdjacentHTML('beforeend', `<div class="wishlist-group"><h3>${listName} <span style="font-size:0.9rem; color:#888;">(${wishlists[listName].length})</span></h3><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;">${itemsHTML}</div></div>`);
         });
         if (!hasItems) container.innerHTML = '<p style="text-align:center; padding:40px;">Your wishlists are empty.</p>';
     };
@@ -514,24 +522,49 @@ document.addEventListener('DOMContentLoaded', () => {
     window.renderOrdersPage = function() {
         const container = document.getElementById('orders-container');
         container.innerHTML = '';
-        if (orders.length === 0) { container.innerHTML = '<p>No past orders.</p>'; return; }
+        if (orders.length === 0) { 
+            container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-muted);">No past orders found.</div>'; 
+            return; 
+        }
+        
         orders.forEach(order => {
+            // Generate list rows instead of grid thumbnails
             const itemsHTML = order.items.map(item => `
-                <div class="order-item-thumb" title="${item.name}" onclick="showProductDetail(${item.id})">
+                <div class="order-item-row" onclick="showProductDetail(${item.id})">
                     <img src="${item.image}" onerror="this.src='https://placehold.co/400x400?text=No+Image'">
-                    <p>${item.qty}x ${item.name}</p>
+                    <div class="order-item-details">
+                        <div class="order-item-name">${item.name}</div>
+                        <div class="order-item-meta">Qty: ${item.qty} &nbsp;|&nbsp; ${formatPrice(item.price)}</div>
+                    </div>
                 </div>
             `).join('');
+
             let cancelBtn = '';
-            if(order.status === 'Processing') cancelBtn = `<button class="cancel-order-btn" onclick="cancelOrder(${order.id})">Cancel Order</button>`;
+            // Only show cancel button if status is Processing
+            if(order.status === 'Processing') {
+                cancelBtn = `<button class="cancel-order-btn" onclick="cancelOrder(${order.id})">Cancel Order</button>`;
+            } else {
+                cancelBtn = `<span style="font-size:0.85rem; color:var(--text-muted);">Order ${order.status}</span>`;
+            }
+
             container.insertAdjacentHTML('beforeend', `
                 <div class="order-card">
                     <div class="order-header">
-                        <div class="order-header-left"><strong>Order #${order.id}</strong><br><span style="font-size:0.8rem">${order.date} at ${order.time}</span></div>
-                        <div class="order-header-right"><span class="status-badge status-${order.status}">${order.status}</span><span style="color:var(--accent); font-weight:bold;">${formatPrice(order.total)}</span></div>
+                        <div class="order-header-left">
+                            <strong>Order #${order.id}</strong>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">${order.date} • ${order.time}</div>
+                        </div>
+                        <div class="order-header-right">
+                            <span class="status-badge status-${order.status}">${order.status}</span>
+                            <div style="font-weight:bold; color:var(--accent); font-size:1rem; margin-top:2px;">${formatPrice(order.total)}</div>
+                        </div>
                     </div>
-                    <div class="order-items">${itemsHTML}</div>
-                    <div style="margin-top:15px; text-align:right;">${cancelBtn}</div>
+                    <div class="order-items">
+                        ${itemsHTML}
+                    </div>
+                    <div class="order-footer">
+                        ${cancelBtn}
+                    </div>
                 </div>
             `);
         });
@@ -544,7 +577,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!container) return;
         const cartItem = cart.find(item => item.id === product.id);
         const btnText = cartItem ? `In Cart (${cartItem.qty})` : "Add to Cart";
-        const btnClass = "add-btn";
         
         container.innerHTML = `
             <div class="detail-image"><img src="${product.image}" onerror="this.src='https://placehold.co/400x400?text=No+Image'"></div>
@@ -555,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${product.description}</p>
                 <h3>Specs</h3>
                 <ul class="specs-list">${Object.entries(product.specs).map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul>
-                <button class="${btnClass}" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
+                <button class="add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
             </div>
             <div class="detail-reviews">
                 <h3>Customer Reviews</h3>
@@ -563,11 +595,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="rating-stars" style="justify-content:flex-start;">★★★★★</div>
                     <p style="color:var(--text-main); margin-top:5px;"><i>"Absolutely love this product! The quality is unmatched."</i></p>
                     <p style="font-size:0.8rem; color:var(--text-muted); margin-top:5px;">— Jane D.</p>
-                </div>
-                <div style="background:var(--bg-body); padding:20px; border-radius:8px;">
-                    <div class="rating-stars" style="justify-content:flex-start;">★★★★☆</div>
-                    <p style="color:var(--text-main); margin-top:5px;"><i>"Fast shipping and great packaging. Highly recommend."</i></p>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:5px;">— Mark S.</p>
                 </div>
             </div>
         `;
