@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
     // --- 1. DATA ---
-    const LOGO_LIGHT = 'assets/images/logo.webp';       
-    const LOGO_DARK = 'assets/images/logo-dark.webp';
+    const LOGO_LIGHT = 'assets/images/logo.png';       
+    const LOGO_DARK = 'assets/images/logo-dark.png';
     const TEXT_LIGHT = 'assets/images/horqen.webp';
 
     // --- 2. STATE ---
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 5. STORAGE & THEME ---
-    // Updated keys to 'horqen' to match rebranding
     function saveData() {
         localStorage.setItem('horqenCart', JSON.stringify(cart));
         localStorage.setItem('horqenWishlists', JSON.stringify(wishlists));
@@ -66,9 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedWishlists) wishlists = JSON.parse(storedWishlists);
         if (storedOrders) orders = JSON.parse(storedOrders);
         
-        // --- THEME & LOGO LOGIC (Dark Default) ---
+        // --- THEME LOGIC (Fixed for Mobile) ---
         const logoImg = document.getElementById('main-logo');
         const textImg = document.getElementById('text-logo');
+        
+        // NEW: Mobile Elements
+        const mobileLogoImg = document.getElementById('main-logo-mobile');
+        const mobileTextImg = document.getElementById('text-logo-mobile');
+        
         const footerTextImg = document.getElementById('footer-logo-text');
         const mobileIcon = document.getElementById('mobile-theme-icon');
         const desktopIcon = document.getElementById('theme-icon');
@@ -78,8 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if(desktopIcon) desktopIcon.innerHTML = SUN_ICON;
             if(mobileIcon) mobileIcon.innerHTML = SUN_ICON;
             
-            // Dark Mode Images
-            if(logoImg) logoImg.src = LOGO_DARK; 
+            // Set All Dark Images
+            if(logoImg) logoImg.src = LOGO_DARK;
+            if(mobileLogoImg) mobileLogoImg.src = LOGO_DARK;
 
             if (!storedTheme) localStorage.setItem('horqenTheme', 'dark');
         } else {
@@ -87,9 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if(desktopIcon) desktopIcon.innerHTML = MOON_ICON;
             if(mobileIcon) mobileIcon.innerHTML = MOON_ICON;
             
-            // Light Mode Images
+            // Set All Light Images
             if(logoImg) logoImg.src = LOGO_LIGHT;
             if(textImg) textImg.src = TEXT_LIGHT;
+            if(mobileLogoImg) mobileLogoImg.src = LOGO_LIGHT;
+            if(mobileTextImg) mobileTextImg.src = TEXT_LIGHT;
             if(footerTextImg) footerTextImg.src = TEXT_LIGHT;
         }
         updateCartUI();
@@ -103,19 +110,52 @@ document.addEventListener('DOMContentLoaded', () => {
         if(document.getElementById('theme-icon')) document.getElementById('theme-icon').innerHTML = iconHTML;
         if(document.getElementById('mobile-theme-icon')) document.getElementById('mobile-theme-icon').innerHTML = iconHTML;
         
-        // Image Elements
+        // Elements
         const logoImg = document.getElementById('main-logo');
         const textImg = document.getElementById('text-logo');
+        const mobileLogoImg = document.getElementById('main-logo-mobile');
+        const mobileTextImg = document.getElementById('text-logo-mobile');
         const footerTextImg = document.getElementById('footer-logo-text');
 
-        // Swap Logic
+        // Swap Logic for all
         if (logoImg) logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        
+        // Mobile Swaps
+        if (mobileLogoImg) mobileLogoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        
         
         localStorage.setItem('horqenTheme', isDark ? 'dark' : 'light');
     };
 
     window.toggleMobileFilters = function() {
         document.getElementById('filter-sidebar').classList.toggle('active');
+    };
+
+    // --- NEW: Mobile Menu Toggle ---
+    window.toggleMobileMenu = function() {
+        document.getElementById('mobile-menu-overlay').classList.toggle('active');
+    };
+
+    // --- NEW: Nav Link Filtering ---
+    window.filterByBrandLink = function(brandName) {
+        window.switchView('home-view');
+        window.scrollToGrid();
+        
+        // Uncheck all current filters
+        document.querySelectorAll('.category-filter, .brand-filter').forEach(c => c.checked = false);
+        
+        // Check the brand if it exists in the filter list
+        const brandCheckbox = Array.from(document.querySelectorAll('.brand-filter')).find(b => b.value === brandName);
+        if (brandCheckbox) {
+            brandCheckbox.checked = true;
+            // Expand the Brand accordion if collapsed
+            const brandContent = document.getElementById('brand-filters')?.parentElement.querySelector('.filter-content');
+            if(brandContent) brandContent.classList.add('show');
+        }
+
+        // Trigger filter logic
+        const applyBtn = document.getElementById('apply-filters');
+        if(applyBtn) applyBtn.click();
     };
 
     // --- 6. HELPER FUNCTIONS ---
