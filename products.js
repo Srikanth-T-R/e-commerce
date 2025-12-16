@@ -6,7 +6,7 @@ const products = [
         brand: 'Breitling',
         category: 'Aviation', 
         price: 780000, 
-        rating: 4.7, 
+        rating: 5, 
         image: 'assets/images/navitimer_b01.webp', 
         description: 'The ultimate pilot\'s watch with a circular slide rule bezel for flight calculations.', 
         specs: { 'Movement': 'B01 Chronograph', 'Case': '43mm Steel', 'Bezel': 'Bidirectional' } 
