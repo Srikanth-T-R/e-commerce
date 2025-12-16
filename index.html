@@ -14,9 +14,27 @@
 
     <header class="main-header">
         <div class="header-content">
-            <div class="branding" onclick="switchView('home-view')">
+            
+            <div class="mobile-header-row mobile-only">
+                <div class="hamburger-icon" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="branding" onclick="switchView('home-view')">
+                    <img src="assets/images/logo.webp" alt="Horqen" class="logo-img" id="main-logo-mobile">
+                    <!-- <img src="assets/images/horqen.webp" alt="Horqen" class="text-logo-img" id="text-logo"> -->
+                </div>
+
+                <div class="icon-group" onclick="toggleDarkMode()">
+                    <span id="mobile-theme-icon"></span>
+                </div>
+            </div>
+
+            <div class="branding desktop-only" onclick="switchView('home-view')">
                 <img src="assets/images/logo.webp" alt="Horqen" class="logo-img" id="main-logo">
-                <img src="assets/images/horqen.webp" alt="Horqen" class="text-logo-img" id="text-logo">
+                <!-- <img src="assets/images/horqen.png" alt="Horqen" class="text-logo-img" id="text-logo"> -->
             </div>
 
             <div class="search-bar">
@@ -25,15 +43,18 @@
             
             <div class="header-icons desktop-only">
                 <div class="icon-group" onclick="switchView('home-view')" title="Home">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                     <span>Home</span>
                 </div>
                 <div class="icon-group" onclick="toggleDarkMode()" title="Toggle Theme">
                     <span id="theme-icon"></span>
                 </div>
-                <div class="icon-group" onclick="switchView('orders-view')" title="My Orders">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                    <span>Orders</span>
+                <div class="nav-item" onclick="switchView('orders-view')">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path> </svg>
+                    <span></span>
                 </div>
                 <div class="icon-group" onclick="switchView('wishlist-view')">
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -44,12 +65,37 @@
                     <span>Cart (<span id="cart-count">0</span>)</span>
                 </div>
             </div>
-
-            <div class="icon-group mobile-only" onclick="toggleDarkMode()" style="margin-left: auto;">
-                <span id="mobile-theme-icon"></span>
-            </div>
         </div>
+
+        <nav class="desktop-nav-bar desktop-only">
+            <ul class="nav-links">
+                <li onclick="switchView('home-view'); scrollToGrid()">Shop All</li>
+                <li onclick="filterByBrandLink('Rolex')">Rolex</li>
+                <li onclick="filterByBrandLink('Omega')">Omega</li>
+                <li onclick="filterByBrandLink('Patek Philippe')">Patek Philippe</li>
+                <li onclick="filterByBrandLink('Audemars Piguet')">Audemars Piguet</li>
+                <li>About Horqen</li>
+            </ul>
+        </nav>
     </header>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="toggleMobileMenu()">
+        <div class="mobile-menu-sidebar" onclick="event.stopPropagation()">
+            <div class="mobile-menu-header">
+                <h3>Menu</h3>
+                <span class="close-menu" onclick="toggleMobileMenu()">✕</span>
+            </div>
+            <ul class="mobile-menu-links">
+                <li onclick="toggleMobileMenu(); switchView('home-view'); scrollToGrid()">Shop All Watches</li>
+                <li onclick="toggleMobileMenu(); filterByBrandLink('Rolex')">Rolex</li>
+                <li onclick="toggleMobileMenu(); filterByBrandLink('Omega')">Omega</li>
+                <li onclick="toggleMobileMenu(); filterByBrandLink('Cartier')">Cartier</li>
+                <li onclick="toggleMobileMenu(); filterByBrandLink('Patek Philippe')">Patek Philippe</li>
+                <li style="border-top:1px solid var(--border); margin-top:10px; padding-top:10px;" onclick="toggleMobileMenu(); switchView('orders-view')">My Orders</li>
+                <li onclick="toggleMobileMenu(); switchView('wishlist-view')">My Wishlist</li>
+            </ul>
+        </div>
+    </div>
 
     <main>
         <div id="home-view" class="view active">
