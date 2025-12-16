@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. DATA ---
     const LOGO_LIGHT = 'assets/images/logo.webp';       
-    const LOGO_DARK = 'assets/images/logo-dark.webp';
+    // const LOGO_DARK = 'assets/images/logo-dark.webp';
+    // const LOGO_DARK = 'assets/images/test.png';
     const TEXT_LIGHT = 'assets/images/horqen.webp';
 
     // --- 2. STATE ---
@@ -83,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if(mobileIcon) mobileIcon.innerHTML = SUN_ICON;
             
             // Set All Dark Images
-            if(logoImg) logoImg.src = LOGO_DARK;
-            if(mobileLogoImg) mobileLogoImg.src = LOGO_DARK;
+            // if(logoImg) logoImg.src = LOGO_DARK;
+            // if(mobileLogoImg) mobileLogoImg.src = LOGO_DARK;
 
             if (!storedTheme) localStorage.setItem('horqenTheme', 'dark');
         } else {
@@ -118,10 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const footerTextImg = document.getElementById('footer-logo-text');
 
         // Swap Logic for all
-        if (logoImg) logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        // if (logoImg) logoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
         
         // Mobile Swaps
-        if (mobileLogoImg) mobileLogoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+        // if (mobileLogoImg) mobileLogoImg.src = isDark ? LOGO_DARK : LOGO_LIGHT;
         
         
         localStorage.setItem('horqenTheme', isDark ? 'dark' : 'light');
@@ -760,4 +761,3 @@ document.addEventListener('DOMContentLoaded', () => {
         window.renderProducts(products);
     } catch (error) { console.error("Init Error:", error); }
 });
-
