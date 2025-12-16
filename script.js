@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Website Loaded. Starting script...");
 
     // --- 1. DATA ---
-    const LOGO_LIGHT = 'assets/images/logo.png';       
-    const LOGO_DARK = 'assets/images/logo-dark.png';
+    const LOGO_LIGHT = 'assets/images/logo.webp';       
+    const LOGO_DARK = 'assets/images/logo-dark.webp';
     const TEXT_LIGHT = 'assets/images/horqen.webp';
 
     // --- 2. STATE ---
@@ -760,3 +760,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.renderProducts(products);
     } catch (error) { console.error("Init Error:", error); }
 });
+
