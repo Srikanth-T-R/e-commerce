@@ -41,7 +41,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .hero-section {
     background: url('assets/images/banner2.webp');
     background-size: cover; background-position: center; background-attachment: fixed;
-    height: 70vh; position: relative; margin-bottom: 0; 
+    height: 50vh; position: relative; margin-bottom: 0; 
 }
 .hero-overlay {
     background: rgba(0,0,0,0.4); width: 100%; height: 100%;
@@ -90,7 +90,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     gap: 15px; cursor: pointer; transition: opacity 0.2s; 
 }
 .branding:hover { opacity: 0.8; }
-.logo-img { height: 95px; width: auto; object-fit: contain; margin-left: -50px; }
+.logo-img { height: 75px; width: auto; object-fit: contain; margin-left: -50px; }
 /* .text-logo-img { height: 95px; width: auto; object-fit: contain; margin-top: 4px; } */
 
 /* --- MOBILE HEADER ROW (Flex for Logo & Ham) --- */
@@ -506,7 +506,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     .detail-image { min-width: 100%; }
     .detail-info h1 { font-size: 1.8rem; }
     .branding { justify-content: center; margin-bottom: 5px; }
-    .logo-img { height: 50px;  margin-left: 0px;}
+    .logo-img { height: 44px;  margin-left: 0px;}
     .text-logo-img { height: 39px; }
     
     /* Footer adjustments for mobile */
@@ -517,7 +517,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     .mobile-header-row {
         margin-bottom: 10px;
     }
+
     #toast-container { position: fixed; top: 20px; right: 20px; z-index: 4000; pointer-events: none; width: 300px; max-width: 90%; }
 
 }
-
