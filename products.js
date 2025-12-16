@@ -2,14 +2,14 @@
 const products = [
     { 
         id: 101, 
-        name: 'Rolex Submariner Date', 
-        brand: 'Rolex',
-        category: 'Dive Watches', 
-        price: 1250000, 
-        rating: 4.9, 
-        image: 'assets/images/submariner_date.webp', 
-        description: 'The archetype of the modern diver\'s watch. Featuring a black dial and a rotatable bezel.', 
-        specs: { 'Movement': 'Automatic 3235', 'Case': '41mm Steel', 'Water Resistance': '300m' } 
+        name: 'Breitling Navitimer B01', 
+        brand: 'Breitling',
+        category: 'Aviation', 
+        price: 780000, 
+        rating: 4.7, 
+        image: 'assets/images/navitimer_b01.webp', 
+        description: 'The ultimate pilot\'s watch with a circular slide rule bezel for flight calculations.', 
+        specs: { 'Movement': 'B01 Chronograph', 'Case': '43mm Steel', 'Bezel': 'Bidirectional' } 
     },
     { 
         id: 102, 
@@ -24,14 +24,14 @@ const products = [
     },
     { 
         id: 103, 
-        name: 'Audemars Piguet Royal Oak Automatic', 
-        brand: 'Audemars Piguet',
+        name: 'Hublot Big Bang Unico', 
+        brand: 'Hublot',
         category: 'Sports Luxury', 
-        price: 3800000, 
-        rating: 5.0, 
-        image: 'assets/images/royal_oak_automatic.webp', 
-        description: 'Iconic octagonal bezel with exposed screws. The definition of integrated bracelet luxury.', 
-        specs: { 'Movement': 'Self-winding', 'Case': '41mm Rose Gold', 'Dial': 'Grande Tapisserie' } 
+        price: 1800000, 
+        rating: 4.5, 
+        image: 'assets/images/big_bang_unico.webp', 
+        description: 'A fusion of materials. Skeleton dial revealing the intricate column-wheel chronograph.', 
+        specs: { 'Movement': 'HUB1280', 'Case': '42mm Ceramic', 'Strap': 'Rubber' } 
     },
     { 
         id: 104, 
@@ -57,15 +57,16 @@ const products = [
     },
     { 
         id: 106, 
-        name: 'Breitling Navitimer B01', 
-        brand: 'Breitling',
-        category: 'Aviation', 
-        price: 780000, 
-        rating: 4.7, 
-        image: 'assets/images/navitimer_b01.webp', 
-        description: 'The ultimate pilot\'s watch with a circular slide rule bezel for flight calculations.', 
-        specs: { 'Movement': 'B01 Chronograph', 'Case': '43mm Steel', 'Bezel': 'Bidirectional' } 
+        name: 'Rolex Submariner Date', 
+        brand: 'Rolex',
+        category: 'Dive Watches', 
+        price: 1250000, 
+        rating: 4.9, 
+        image: 'assets/images/submariner_date.webp', 
+        description: 'The archetype of the modern diver\'s watch. Featuring a black dial and a rotatable bezel.', 
+        specs: { 'Movement': 'Automatic 3235', 'Case': '41mm Steel', 'Water Resistance': '300m' } 
     },
+    
     { 
         id: 107, 
         name: 'Omega Seamaster 300M', 
@@ -90,14 +91,14 @@ const products = [
     },
     { 
         id: 109, 
-        name: 'Hublot Big Bang Unico', 
-        brand: 'Hublot',
+        name: 'Audemars Piguet Royal Oak Automatic', 
+        brand: 'Audemars Piguet',
         category: 'Sports Luxury', 
-        price: 1800000, 
-        rating: 4.5, 
-        image: 'assets/images/big_bang_unico.webp', 
-        description: 'A fusion of materials. Skeleton dial revealing the intricate column-wheel chronograph.', 
-        specs: { 'Movement': 'HUB1280', 'Case': '42mm Ceramic', 'Strap': 'Rubber' } 
+        price: 3800000, 
+        rating: 5.0, 
+        image: 'assets/images/royal_oak_automatic.webp', 
+        description: 'Iconic octagonal bezel with exposed screws. The definition of integrated bracelet luxury.', 
+        specs: { 'Movement': 'Self-winding', 'Case': '41mm Rose Gold', 'Dial': 'Grande Tapisserie' } 
     },
     { 
         id: 110, 
