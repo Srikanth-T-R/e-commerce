@@ -46,7 +46,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .hero-overlay {
     background: rgba(0,0,0,0.4); width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    text-align: center; color: white; padding: 20px;
+    text-align: center; color: rgb(245, 245, 245); padding: 20px;
 }
 .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 15px; text-shadow: 0 3px 6px rgba(0,0,0,0.6); animation: fadeInUp 0.8s ease-out; }
 .hero-content p { font-size: 1.2rem; margin-bottom: 30px; text-shadow: 0 1px 3px rgba(0,0,0,0.6); animation: fadeInUp 0.8s ease-out 0.2s backwards; }
@@ -62,16 +62,17 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .main-header { background: var(--bg-card); padding: 15px 0; position: sticky; top: 0; z-index: 2000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border); }
 .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
 .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; cursor: pointer; color: var(--text-main); }
-.search-bar input { padding: 10px 15px; border: 1px solid var(--border); border-radius: 30px; width: 340px; outline: none; transition: width 0.3s; background: var(--bg-body); color: var(--text-main); }
+.search-bar input { padding: 10px 15px; border: 1px solid var(--border); border-radius: 30px; width: 340px; outline: none; transition: width 0.3s, transform 0.2s ease-out; background: var(--bg-body); color: var(--text-main); }
 .search-bar input:focus { border-color: var(--accent); }
+.search-bar input:hover{transform:scale(1.05);}
 .header-icons { display: flex; gap: 25px; }
-.icon-group { cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 0.9rem; color: var(--text-main); transition: color 0.2s; }
+.icon-group { cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 0.9rem; color: var(--text-main); transition: color 0.2s, transform 0.2s ease-out; }
 .icon-group svg { stroke: currentColor; fill: none; }
-.icon-group:hover { color: var(--accent); }
+.icon-group:hover { color: var(--accent); transform: scale(1.07) }
 
 /* --- NEW DESKTOP NAV BAR --- */
 .desktop-nav-bar {
-    max-width: 1330px; margin: 15px auto 0 auto; padding: 0 20px;
+    max-width: 1330px; margin: 15px auto 0px auto; padding: 0 85px;
     border-top: 1px solid var(--border);
     padding-top: 10px;
 }
@@ -166,13 +167,25 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
 .close-filters { font-size: 1.5rem; cursor: pointer; padding: 5px; }
 
 /* Buttons */
-.primary-btn { background: var(--text-main); color: var(--bg-card); border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; display: inline-block; text-align: center; }
-.primary-btn:hover { background: var(--accent); color: white; }
+.primary-btn { 
+    background: var(--text-main);
+    color: var(--bg-card);
+    border: none; 
+    padding: 12px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: 0.3s; 
+    display: inline-block; 
+    text-align: center; 
+    transition: transform 0.2s ease;
+}
+.primary-btn:hover { background: var(--accent); color: white; transform : scale(1.05); }
 .checkout-btn { background: var(--text-main); color: var(--bg-card); padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.1rem; cursor: pointer; margin-top: 20px; font-weight: bold; }
 .checkout-btn:hover { background: var(--accent); color: white; }
 .full-width { width: 100%; }
 .back-btn { background: none; border: none; cursor: pointer; font-size: 1rem; margin: 20px 0 0 20px; color: var(--text-muted); }
-.back-btn:hover { color: var(--accent); }
+.back-btn:hover { color: var(--accent); transform : scale(1.05);}
 .danger-btn { background: var(--danger); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 .secondary-btn { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
@@ -196,6 +209,7 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     flex-direction: column; 
     width: 100%; 
 }
+.product-card:hover{transform: scale(1.09);}
 
 .card-image-wrapper { height: 260px; position: relative; overflow: hidden; background: var(--white); padding: 20px; display: flex; align-items: center; justify-content: center; }
 .product-image { max-height: 100%; max-width: 100%; object-fit: contain; }
@@ -210,9 +224,11 @@ body { font-family: 'Lato', sans-serif; background-color: var(--bg-body); color:
     z-index: 20; 
     padding: 5px; 
     pointer-events: auto; 
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 /* .wishlist-heart.active { color: var(--danger) !important; } */
 .wishlist-heart.active { color: #FFD700; }
+.wishlist-heart:hover{ color: #FFD700; transform: scale(1.25);}
 
 .product-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .product-name { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 5px; }
