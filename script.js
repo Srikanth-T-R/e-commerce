@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="rating-stars">${getStarRating(product.rating)}</div>
                         <p style="color:#888; font-size:0.8rem">${product.brand}</p>
                         <p class="product-price">${formatPrice(product.price)}</p>
-                        <button class="add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
+                        <button class="primary-btn add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
                     </div>
                 </div>
             `;
@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4 onclick="showProductDetail(${item.id})">${item.name}</h4>
                     <p style="font-weight:bold; color:var(--accent); font-size:0.9rem; margin-bottom:5px;">${formatPrice(item.price)}</p>
                     <div class="wishlist-btn-group">
-                        <button class="btn-small-add" onclick="handleCartClick(event, ${item.id})">Add to Cart</button>
+                        <button class="primary-btn btn-small-add" onclick="handleCartClick(event, ${item.id})">Add to Cart</button>
                         <button class="btn-small-remove" onclick="removeFromWishlist('${listName}', ${item.id})" title="Remove">✕</button>
                     </div>
                 </div>
@@ -634,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${product.description}</p>
                 <h3>Specs</h3>
                 <ul class="specs-list">${Object.entries(product.specs).map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul>
-                <button class="add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
+                <button class="primary-btn add-btn" data-id="${product.id}" onclick="handleCartClick(event, ${product.id})">${btnText}</button>
             </div>
             <div class="detail-reviews">
                 <h3>Customer Reviews</h3>
